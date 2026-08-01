@@ -8,10 +8,10 @@ const urlLib = require("url");
 const port = 8080;
 const baseUrl = `http://localhost:${port}/`;
 
-const ensureExists = async (url) => {
+const ensureExists = async (url, filename) => {
   const parsedUrl = new urlLib.URL(url);
   const parsedPathname = path.parse(parsedUrl.pathname);
-  const filename = `${parsedPathname.name}${parsedPathname.ext}`;
+  filename = filename ?? `${parsedPathname.name}${parsedPathname.ext}`;
   try {
     await fsp.lstat(filename);
     console.log(`found ${filename}`);
@@ -48,11 +48,8 @@ const main = async () => {
         case ".js":
           res.writeHead(200, { "content-type": "text/javascript" });
           break;
-        case ".png":
-          res.writeHead(200, { "content-type": "image/png" });
-          break;
-        case ".webp":
-          res.writeHead(200, { "content-type": "image/webp" });
+        case ".jpg":
+          res.writeHead(200, { "content-type": "image/jpeg" });
           break;
       }
 
