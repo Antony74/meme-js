@@ -9,23 +9,28 @@ const port = 8080;
 const baseUrl = `http://localhost:${port}/`;
 
 const ensureExists = async (url) => {
-    const parsedUrl = new urlLib.URL(url);
-    const parsedPathname = path.parse(parsedUrl.pathname);
-    const filename = `${parsedPathname.name}${parsedPathname.ext}`;
-    try {
-        await fsp.lstat(filename);
-        console.log(`found ${filename}`);
-        return;
-    } catch (error) {
-        if ( error.code !== "ENOENT") {
-            throw error;
-        }
+  const parsedUrl = new urlLib.URL(url);
+  const parsedPathname = path.parse(parsedUrl.pathname);
+  const filename = `${parsedPathname.name}${parsedPathname.ext}`;
+  try {
+    await fsp.lstat(filename);
+    console.log(`found ${filename}`);
+    return;
+  } catch (error) {
+    if (error.code !== "ENOENT") {
+      throw error;
     }
+  }
 
-    console.log(`fetching ${url}`);
-    const response = await fetch(url);
-    const text = await response.text();
-    await fsp.writeFile(filename, text);
+  console.log(`fetching ${url}`);
+  const response = await fetch(url);
+
+  if (response.status >= 400) {
+    throw new Error(`Status ${response.status}`);
+  }
+
+  const text = await response.text();
+  await fsp.writeFile(filename, text);
 };
 
 const main = async () => {
@@ -37,10 +42,18 @@ const main = async () => {
     const filename = path.join(__dirname, url);
 
     try {
-      const content = await fsp.readFile(filename, { encoding: "utf-8" });
+      const content = await fsp.readFile(filename);
 
-      if (obj.ext === ".js") {
-        res.writeHead(200, { "content-type": "text/javascript" });
+      switch (obj.ext) {
+        case ".js":
+          res.writeHead(200, { "content-type": "text/javascript" });
+          break;
+        case ".png":
+          res.writeHead(200, { "content-type": "image/png" });
+          break;
+        case ".webp":
+          res.writeHead(200, { "content-type": "image/webp" });
+          break;
       }
 
       res.end(content);
