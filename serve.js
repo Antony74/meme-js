@@ -34,7 +34,7 @@ const ensureExists = async (url, filename) => {
 };
 
 const main = async () => {
-  await ensureExists("https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.min.js");
+  await ensureExists("https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.min.js");
 
   const server = http.createServer(async (req, res) => {
     const url = req.url === "/" ? "/index.html" : req.url;
