@@ -8,26 +8,21 @@ const height = 389;
 container.style = { ...container.style, width, height };
 
 const graph = new Graph(container);
-const parent = graph.getDefaultParent();
 
 graph.insertVertex({
-  parent,
   size: [width, height],
   position: [0, 0],
   style: {
-    image: `cheezburger.jpg`,
+    image: "cheezburger.jpg",
     shape: "image",
   },
 });
 
 const textCommon = {
-  parent,
-  size: [100, 100],
   style: {
     fillOpacity: 0,
     strokeOpacity: 0,
     fontColor: "white",
-    verticalAlign: "top",
     align: "left",
     fontSize: 29,
     fontFamily: "Impact",
@@ -37,11 +32,11 @@ const textCommon = {
 graph.insertVertex({
   ...textCommon,
   value: `I CAN HAS`,
-  position: [60, 25],
+  position: [60, 36],
 });
 
 graph.insertVertex({
   ...textCommon,
   value: `CHEEZBURGER?`,
-  position: [30, 55],
+  position: [30, 70],
 });
