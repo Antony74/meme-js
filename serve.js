@@ -46,6 +46,7 @@ const main = async () => {
 
       switch (obj.ext) {
         case ".js":
+        case ".mjs":
           res.writeHead(200, { "content-type": "text/javascript" });
           break;
         case ".jpg":
