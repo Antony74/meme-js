@@ -3,7 +3,6 @@
 const fsp = require("fs/promises");
 const http = require("http");
 const path = require("path");
-const urlLib = require("url");
 
 const port = 8080;
 const baseUrl = `http://localhost:${port}/`;
