@@ -13,7 +13,7 @@ graph.insertVertex({
   size: [width, height],
   position: [0, 0],
   style: {
-    image: "cheezburger.jpg",
+    image: "cheezburger/cheezburger.jpg",
     shape: "image",
   },
 });

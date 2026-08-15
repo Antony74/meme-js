@@ -2,7 +2,7 @@ import "./p5/p5.min.js";
 
 new p5((p) => {
   p.setup = async () => {
-    const img = await p.loadImage("cheezburger.jpg");
+    const img = await p.loadImage("cheezburger/cheezburger.jpg");
     p.createCanvas(237, 389);
     p.image(img, 0, 0);
     p.fill(255);
