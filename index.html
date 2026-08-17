@@ -5,6 +5,9 @@
     <title>Meme</title>
     <link rel="icon" href="data:;base64,=" />
 
+    <!-- canvas -->
+    <script type="module" src="./memeWithCanvas.js"></script>
+
     <!-- p5 -->
     <script src="./p5/p5.min.js"></script>
     <script type="module" src="./memeWithP5.js"></script>
@@ -13,6 +16,9 @@
     <script type="module" src="./memeWithMaxGraph.js"></script>
   </head>
   <body>
+    <p>
+      <canvas id="memeCanvas" width="237" height="389"></canvas>
+    </p>
     <div id="p5Container"></div>
     <div id="maxgraphContainer"></div>
   </body>
